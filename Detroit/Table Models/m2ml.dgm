@@ -1,0 +1,69 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+  Model 2.
+  Stata2Mplus conversion for emcause.dta
+  List of variables converted shown below
+
+  code : code
+  em_ever : Ever had an EM
+  pwhite : percent white
+  pblack : percent black
+  eml : Emergency dispossesion (EM or probation)
+  fis_i : Fiscal Indicator Score (with imputation)
+  fis_m : FIS mean across the years
+  medhinc : Median Household Income
+
+DATA:
+  File is emcause.dat ;
+VARIABLE:
+  Names are
+     code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+  Usevariables are eml fis_i pblack linc;
+  Categorical = eml;
+ANALYSIS:
+  Estimator=ML;
+OUTPUT:
+  TECH1 TECH8 STDYX RESIDUAL;
+PLOT:
+  Type is PLOT3;
+  Outliers is LOGLIKELIHOOD;
+MODEL:
+  eml ON fis_i pblack;
+  fis_i ON pblack linc;
+INPUT_END
+2
+2
+0
+2
+ML
+1
+GENERAL
+0
+2
+0
+2
+eml fis_i pblack linc
+3
+2 1 0 0
+0
+0
+1 1 fis_i eml    0.595    0.105
+1 1 pblack eml    0.053    0.007
+1 1 pblack fis_i    0.049    0.002
+1 1 linc fis_i   -0.618    0.053
+4 1 fis_i    1.470    0.025
+2 1 pblack linc  999.000  999.000
+11 1 fis_i eml    0.374    0.058
+11 1 pblack eml    0.245    0.036
+11 1 pblack fis_i    0.362    0.011
+11 1 linc fis_i   -0.133    0.011
+14 1 fis_i    0.826    0.008
+12 1 pblack linc  999.000  999.000
+31 1 fis_i eml    0.595    0.105
+31 1 pblack eml    0.053    0.007
+31 1 pblack fis_i    0.049    0.002
+31 1 linc fis_i   -0.618    0.053
+34 1 fis_i    1.470    0.025
+32 1 pblack linc  999.000  999.000

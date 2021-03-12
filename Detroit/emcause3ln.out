@@ -1,0 +1,284 @@
+Mplus VERSION 5
+MUTHEN & MUTHEN
+09/03/2016   7:56 AM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    Stata2Mplus conversion for emcause.dta
+    List of variables converted shown below
+
+    code : code
+    em_ever : Ever had an EM
+    pwhite : percent white
+    pblack : percent black
+    eml : Emergency dispossesion (EM or probation)
+    fis_i : Fiscal Indicator Score (with imputation)
+    fis_m : FIS mean across the years
+    medhinc : Median Household Income
+
+  Data:
+    File is emcause.dat ;
+  Variable:
+    Names are
+       code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+    Usevariables are eml fis_i pblack linc;
+    Categorical = eml;
+    !Keeping it an LPM for easier understanding
+  Model:
+    eml ON fis_i pblack linc;
+  Output:
+    TECH1 STDYX;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Stata2Mplus conversion for emcause.dta
+List of variables converted shown below
+
+code : code
+em_ever : Ever had an EM
+pwhite : percent white
+pblack : percent black
+eml : Emergency dispossesion (EM or probation)
+fis_i : Fiscal Indicator Score (with imputation)
+fis_m : FIS mean across the years
+medhinc : Median Household Income
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6938
+
+Number of dependent variables                                    1
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   EML
+
+Observed independent variables
+   FIS_I       PBLACK      LINC
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Parameterization                                             DELTA
+
+Input data file(s)
+  emcause.dat
+
+Input data format  FREE
+
+
+SUMMARY OF CATEGORICAL DATA PROPORTIONS
+
+    EML
+      Category 1    0.993
+      Category 2    0.007
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+TESTS OF MODEL FIT
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0**
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference tests.  MLM, MLR and WLSM chi-square difference
+    testing is described in the Mplus Technical Appendices at www.statmodel.com.
+    See chi-square difference testing in the index of the Mplus User's Guide.
+
+**  The degrees of freedom for MLMV, ULSMV and WLSMV are estimated according to
+    a formula given in the Mplus Technical Appendices at www.statmodel.com.
+    See degrees of freedom in the index of the Mplus User's Guide.
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                             55.889
+          Degrees of Freedom                     3
+          P-Value                           0.0000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Number of Free Parameters                        4
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+
+WRMR (Weighted Root Mean Square Residual)
+
+          Value                              0.303
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML      ON
+    FIS_I              0.241      0.049      4.875      0.000
+    PBLACK             0.023      0.004      5.497      0.000
+    LINC              -0.629      0.449     -1.402      0.161
+
+ Thresholds
+    EML$1              2.398      1.756      1.366      0.172
+
+
+STANDARDIZED MODEL RESULTS
+
+                      StdYX
+                    Estimate
+
+ EML      ON
+    FIS_I              0.282
+    PBLACK             0.199
+    LINC              -0.159
+
+ Thresholds
+    EML$1              2.110
+
+
+R-SQUARE
+
+    Observed                   Residual
+    Variable        Estimate   Variance
+
+    EML                0.226      1.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.805E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              EML$1
+              ________
+      1           1
+
+
+           NU
+              EML
+              ________
+      1           0
+
+
+           LAMBDA
+              EML
+              ________
+ EML                0
+
+
+           ALPHA
+              EML
+              ________
+      1           0
+
+
+           BETA
+              EML
+              ________
+ EML                0
+
+
+           GAMMA
+              FIS_I         PBLACK        LINC
+              ________      ________      ________
+ EML                2             3             4
+
+
+           PSI
+              EML
+              ________
+ EML                0
+
+
+     STARTING VALUES
+
+
+           TAU
+              EML$1
+              ________
+      1         2.477
+
+
+           NU
+              EML
+              ________
+      1         0.000
+
+
+           LAMBDA
+              EML
+              ________
+ EML            1.000
+
+
+           ALPHA
+              EML
+              ________
+      1         0.000
+
+
+           BETA
+              EML
+              ________
+ EML            0.000
+
+
+           GAMMA
+              FIS_I         PBLACK        LINC
+              ________      ________      ________
+ EML            0.000         0.000         0.000
+
+
+           PSI
+              EML
+              ________
+ EML            1.000
+
+
+     Beginning Time:  07:56:36
+        Ending Time:  07:56:36
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2007 Muthen & Muthen

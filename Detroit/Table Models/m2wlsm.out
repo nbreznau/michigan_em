@@ -1,0 +1,399 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+10/17/2016  12:19 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    Model 2.
+    Stata2Mplus conversion for emcause.dta
+    List of variables converted shown below
+
+    code : code
+    em_ever : Ever had an EM
+    pwhite : percent white
+    pblack : percent black
+    eml : Emergency dispossesion (EM or probation)
+    fis_i : Fiscal Indicator Score (with imputation)
+    fis_m : FIS mean across the years
+    medhinc : Median Household Income
+
+  Data:
+    File is emcause.dat ;
+  Variable:
+    Names are
+       code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+    Usevariables are eml fis_i pblack linc;
+    Categorical = eml;
+  Model:
+    eml ON fis_i pblack;
+    fis_i ON pblack linc;
+  Analysis:
+    Estimator=WLSM;
+  Model Indirect:
+    eml IND pblack;
+  Output:
+    TECH1 STDYX;
+  Savedata:
+    DIFFTEST = m2mdiff;
+
+
+
+*** WARNING in SAVEDATA command
+  The DIFFTEST option is available only for the estimators MLMV, WLSMV and ULSMV.
+  Request for DIFFTEST will be ignored.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Model 2.
+Stata2Mplus conversion for emcause.dta
+List of variables converted shown below
+
+code : code
+em_ever : Ever had an EM
+pwhite : percent white
+pblack : percent black
+eml : Emergency dispossesion (EM or probation)
+fis_i : Fiscal Indicator Score (with imputation)
+fis_m : FIS mean across the years
+medhinc : Median Household Income
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6938
+
+Number of dependent variables                                    2
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   FIS_I
+
+  Binary and ordered categorical (ordinal)
+   EML
+
+Observed independent variables
+   PBLACK      LINC
+
+
+Estimator                                                     WLSM
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Parameterization                                             DELTA
+
+Input data file(s)
+  emcause.dat
+
+Input data format  FREE
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    EML
+      Category 1    0.993         6892.000
+      Category 2    0.007           46.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        7
+
+Chi-Square Test of Model Fit
+
+          Value                              5.273*
+          Degrees of Freedom                     1
+          P-Value                           0.0217
+          Scaling Correction Factor         0.9968
+            for WLSM
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.025
+          90 Percent C.I.                    0.008  0.047
+          Probability RMSEA <= .05           0.969
+
+CFI/TLI
+
+          CFI                                0.998
+          TLI                                0.990
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2241.462
+          Degrees of Freedom                     5
+          P-Value                           0.0000
+
+WRMR (Weighted Root Mean Square Residual)
+
+          Value                              0.811
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML      ON
+    FIS_I              0.214      0.032      6.793      0.000
+    PBLACK             0.022      0.004      5.196      0.000
+
+ FIS_I    ON
+    PBLACK             0.049      0.001     44.505      0.000
+    LINC              -0.622      0.052    -11.874      0.000
+
+ Intercepts
+    FIS_I              0.000      0.019     -0.013      0.990
+
+ Thresholds
+    EML$1              3.160      0.131     24.208      0.000
+
+ Residual Variances
+    FIS_I              1.470      0.021     69.407      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML      ON
+    FIS_I              0.271      0.040      6.796      0.000
+    PBLACK             0.207      0.038      5.489      0.000
+
+ FIS_I    ON
+    PBLACK             0.362      0.008     46.650      0.000
+    LINC              -0.134      0.011    -11.921      0.000
+
+ Intercepts
+    FIS_I              0.000      0.014     -0.013      0.990
+
+ Thresholds
+    EML$1              2.997      0.123     24.393      0.000
+
+ Residual Variances
+    FIS_I              0.826      0.006    130.294      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed   Residual
+    Variable        Estimate       S.E.  Est./S.E.    P-Value    Variance
+
+    EML                0.161      0.027      6.042      0.000      0.932
+    FIS_I              0.174      0.006     27.467      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.175E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from PBLACK to EML
+
+  Total                0.033      0.004      8.318      0.000
+  Total indirect       0.010      0.002      6.743      0.000
+
+  Specific indirect
+
+    EML
+    FIS_I
+    PBLACK             0.010      0.002      6.743      0.000
+
+  Direct
+    EML
+    PBLACK             0.022      0.004      5.196      0.000
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from PBLACK to EML
+
+  Total                0.306      0.033      9.176      0.000
+  Total indirect       0.098      0.015      6.725      0.000
+
+  Specific indirect
+
+    EML
+    FIS_I
+    PBLACK             0.098      0.015      6.725      0.000
+
+  Direct
+    EML
+    PBLACK             0.207      0.038      5.489      0.000
+
+
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              EML$1
+              ________
+      1           1
+
+
+           NU
+              EML           FIS_I
+              ________      ________
+      1           0             0
+
+
+           LAMBDA
+              EML           FIS_I
+              ________      ________
+ EML                0             0
+ FIS_I              0             0
+
+
+           THETA
+              EML           FIS_I
+              ________      ________
+ EML                0
+ FIS_I              0             0
+
+
+           ALPHA
+              EML           FIS_I
+              ________      ________
+      1           0             2
+
+
+           BETA
+              EML           FIS_I
+              ________      ________
+ EML                0             3
+ FIS_I              0             0
+
+
+           GAMMA
+              PBLACK        LINC
+              ________      ________
+ EML                4             0
+ FIS_I              5             6
+
+
+           PSI
+              EML           FIS_I
+              ________      ________
+ EML                0
+ FIS_I              0             7
+
+
+     STARTING VALUES
+
+
+           TAU
+              EML$1
+              ________
+      1         2.477
+
+
+           NU
+              EML           FIS_I
+              ________      ________
+      1         0.000         0.000
+
+
+           LAMBDA
+              EML           FIS_I
+              ________      ________
+ EML            1.000         0.000
+ FIS_I          0.000         1.000
+
+
+           THETA
+              EML           FIS_I
+              ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+
+
+           ALPHA
+              EML           FIS_I
+              ________      ________
+      1         0.000         0.000
+
+
+           BETA
+              EML           FIS_I
+              ________      ________
+ EML            0.000         0.000
+ FIS_I          0.000         0.000
+
+
+           GAMMA
+              PBLACK        LINC
+              ________      ________
+ EML            0.000         0.000
+ FIS_I          0.000         0.000
+
+
+           PSI
+              EML           FIS_I
+              ________      ________
+ EML            1.000
+ FIS_I          0.000         0.890
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\data\detroit\table models\m2wlsm.dgm
+
+     Beginning Time:  12:19:11
+        Ending Time:  12:19:11
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

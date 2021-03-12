@@ -1,0 +1,40 @@
+Title: 
+  Model 1.
+  Stata2Mplus conversion for emcause.dta
+  List of variables converted shown below
+
+  code : code
+  em_ever : Ever had an EM
+  pwhite : percent white
+  pblack : percent black
+  eml : Emergency dispossesion (EM or probation)
+  fis_i : Fiscal Indicator Score (with imputation)
+  fis_m : FIS mean across the years
+  medhinc : Median Household Income
+ 
+Data:
+  File is emcause.dat ;
+Variable:
+  Names are 
+     code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+  Usevariables are eml fis_i pblack linc;
+  Categorical = eml;
+Model:
+  eml ON fis_i pblack; 
+  fis_i ON pblack linc;
+Analysis:
+  Estimator=BAYES;
+  !More iterations necessary to achieve a scale reduction value close to 1
+  !Default is 1000?
+  !At 12400 iterations the scale reduction factor is nearly 1, does it make sense to use this?
+  Fbiter = 12400; 
+  !Using thin allows the autocorrelation of estimates to get below 0.1
+  Thin = 20; 
+  !Pay attention to the Posterior Predictive P-value, it is less forgiving as a fit indicator
+  !Over 0.5 is ideal, this suggests that the PP chi-square converges with the ML chi-square
+Model Indirect:
+  eml IND pblack;
+Output:
+  TECH1 TECH8 STDYX;
+Plot:
+  Type = plot2;

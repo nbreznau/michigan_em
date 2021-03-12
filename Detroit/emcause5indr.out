@@ -1,0 +1,345 @@
+Mplus VERSION 5
+MUTHEN & MUTHEN
+09/03/2016   7:59 AM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    Stata2Mplus conversion for emcause.dta
+    List of variables converted shown below
+
+    code : code
+    em_ever : Ever had an EM
+    pwhite : percent white
+    pblack : percent black
+    eml : Emergency dispossesion (EM or probation)
+    fis_i : Fiscal Indicator Score (with imputation)
+    fis_m : FIS mean across the years
+    medhinc : Median Household Income
+
+  Data:
+    File is emcause.dat ;
+  Variable:
+    Names are
+       code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+    Usevariables are eml fis_i pblack medhinc;
+    Categorical = eml;
+    !Keeping it an LPM for easier understanding
+  Model:
+    eml ON fis_i;
+    eml ON pblack(b);
+    eml ON medhinc(a);
+    fis_i ON pblack medhinc;
+  Model constraint:
+    !b=0;
+  Output:
+    TECH1 STDYX MODINDICES;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Stata2Mplus conversion for emcause.dta
+List of variables converted shown below
+
+code : code
+em_ever : Ever had an EM
+pwhite : percent white
+pblack : percent black
+eml : Emergency dispossesion (EM or probation)
+fis_i : Fiscal Indicator Score (with imputation)
+fis_m : FIS mean across the years
+medhinc : Median Household Income
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6938
+
+Number of dependent variables                                    2
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   FIS_I
+
+  Binary and ordered categorical (ordinal)
+   EML
+
+Observed independent variables
+   PBLACK      MEDHINC
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Parameterization                                             DELTA
+
+Input data file(s)
+  emcause.dat
+
+Input data format  FREE
+
+
+SUMMARY OF CATEGORICAL DATA PROPORTIONS
+
+    EML
+      Category 1    0.993
+      Category 2    0.007
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+TESTS OF MODEL FIT
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0**
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference tests.  MLM, MLR and WLSM chi-square difference
+    testing is described in the Mplus Technical Appendices at www.statmodel.com.
+    See chi-square difference testing in the index of the Mplus User's Guide.
+
+**  The degrees of freedom for MLMV, ULSMV and WLSMV are estimated according to
+    a formula given in the Mplus Technical Appendices at www.statmodel.com.
+    See degrees of freedom in the index of the Mplus User's Guide.
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2492.046
+          Degrees of Freedom                     5
+          P-Value                           0.0000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Number of Free Parameters                        8
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+
+WRMR (Weighted Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML      ON
+    FIS_I              0.207      0.031      6.671      0.000
+    PBLACK             0.023      0.004      5.447      0.000
+    MEDHINC           -0.026      0.010     -2.550      0.011
+
+ FIS_I    ON
+    PBLACK             0.051      0.001     47.604      0.000
+    MEDHINC           -0.010      0.001     -9.955      0.000
+
+ Intercepts
+    FIS_I              1.754      0.056     31.544      0.000
+
+ Thresholds
+    EML$1              2.298      0.484      4.751      0.000
+
+ Residual Variances
+    FIS_I              1.476      0.021     69.231      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+                      StdYX
+                    Estimate
+
+ EML      ON
+    FIS_I              0.239
+    PBLACK             0.193
+    MEDHINC           -0.339
+
+ FIS_I    ON
+    PBLACK             0.375
+    MEDHINC           -0.116
+
+ Intercepts
+    FIS_I              1.315
+
+ Thresholds
+    EML$1              1.985
+
+ Residual Variances
+    FIS_I              0.830
+
+
+R-SQUARE
+
+    Observed                   Residual
+    Variable        Estimate   Variance
+
+    EML                0.301      0.937
+    FIS_I              0.170
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.591E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+MODEL MODIFICATION INDICES
+
+Minimum M.I. value for printing the modification index    10.000
+
+                            M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+No modification indices above the minimum value.
+
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              EML$1
+              ________
+      1           1
+
+
+           NU
+              EML           FIS_I
+              ________      ________
+      1           0             0
+
+
+           LAMBDA
+              EML           FIS_I
+              ________      ________
+ EML                0             0
+ FIS_I              0             0
+
+
+           THETA
+              EML           FIS_I
+              ________      ________
+ EML                0
+ FIS_I              0             0
+
+
+           ALPHA
+              EML           FIS_I
+              ________      ________
+      1           0             2
+
+
+           BETA
+              EML           FIS_I
+              ________      ________
+ EML                0             3
+ FIS_I              0             0
+
+
+           GAMMA
+              PBLACK        MEDHINC
+              ________      ________
+ EML                4             5
+ FIS_I              6             7
+
+
+           PSI
+              EML           FIS_I
+              ________      ________
+ EML                0
+ FIS_I              0             8
+
+
+     STARTING VALUES
+
+
+           TAU
+              EML$1
+              ________
+      1         2.477
+
+
+           NU
+              EML           FIS_I
+              ________      ________
+      1         0.000         0.000
+
+
+           LAMBDA
+              EML           FIS_I
+              ________      ________
+ EML            1.000         0.000
+ FIS_I          0.000         1.000
+
+
+           THETA
+              EML           FIS_I
+              ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+
+
+           ALPHA
+              EML           FIS_I
+              ________      ________
+      1         0.000         1.418
+
+
+           BETA
+              EML           FIS_I
+              ________      ________
+ EML            0.000         0.000
+ FIS_I          0.000         0.000
+
+
+           GAMMA
+              PBLACK        MEDHINC
+              ________      ________
+ EML            0.000         0.000
+ FIS_I          0.000         0.000
+
+
+           PSI
+              EML           FIS_I
+              ________      ________
+ EML            1.000
+ FIS_I          0.000         0.890
+
+
+     Beginning Time:  07:59:19
+        Ending Time:  07:59:19
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2007 Muthen & Muthen

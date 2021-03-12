@@ -1,0 +1,70 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+  Model 1.
+  Stata2Mplus conversion for emcause.dta
+  List of variables converted shown below
+
+  code : code
+  em_ever : Ever had an EM
+  pwhite : percent white
+  pblack : percent black
+  eml : Emergency dispossesion (EM or probation)
+  fis_i : Fiscal Indicator Score (with imputation)
+  fis_m : FIS mean across the years
+  medhinc : Median Household Income
+
+DATA:
+  File is emcause.dat ;
+VARIABLE:
+  Names are
+     code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+  Usevariables are eml fis_i pblack linc;
+  Categorical = eml;
+ANALYSIS:
+  Estimator=BAYES;
+  Fbiter = 12400;
+  Thin = 20;
+OUTPUT:
+  TECH1 TECH8 STDYX;
+PLOT:
+  Type = plot2;
+MODEL:
+  eml ON fis_i pblack;
+  fis_i ON pblack linc;
+INPUT_END
+3
+3
+0
+3
+BAYES
+1
+GENERAL
+0
+2
+0
+2
+eml fis_i pblack linc
+3
+2 1 0 0
+0
+0
+1 1 fis_i eml    0.264    0.047    0.174    0.358
+1 1 pblack eml    0.027    0.003    0.020    0.033
+1 1 pblack fis_i    0.049    0.002    0.046    0.052
+1 1 linc fis_i   -0.619    0.053   -0.722   -0.514
+4 1 fis_i    1.472    0.025    1.423    1.521
+2 1 pblack linc  999.000  999.000  999.000  999.000
+11 1 fis_i eml    0.313    0.050    0.211    0.408
+11 1 pblack eml    0.234    0.029    0.178    0.292
+11 1 pblack fis_i    0.362    0.010    0.341    0.381
+11 1 linc fis_i   -0.133    0.011   -0.155   -0.111
+14 1 fis_i    0.826    0.008    0.811    0.842
+12 1 pblack linc  999.000  999.000  999.000  999.000
+31 1 fis_i eml    0.313    0.050    0.211    0.408
+31 1 pblack eml    0.234    0.029    0.178    0.292
+31 1 pblack fis_i    0.362    0.010    0.341    0.381
+31 1 linc fis_i   -0.133    0.011   -0.155   -0.111
+34 1 fis_i    0.826    0.008    0.811    0.842
+32 1 pblack linc  999.000  999.000  999.000  999.000

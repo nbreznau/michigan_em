@@ -1,0 +1,313 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+09/14/2016   6:52 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    Stata2Mplus conversion for emcause.dta
+    List of variables converted shown below
+
+    code : code
+    em_ever : Ever had an EM
+    pwhite : percent white
+    pblack : percent black
+    eml : Emergency dispossesion (EM or probation)
+    fis_i : Fiscal Indicator Score (with imputation)
+    fis_m : FIS mean across the years
+    medhinc : Median Household Income
+
+  Data:
+    File is emcause.dat ;
+  Variable:
+    Names are
+       code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+    Usevariables are eml fis_i pblack;
+    !Categorical = eml;
+    !Keeping it an LPM for easier understanding
+  Analysis:
+    Type = general;
+    Model = NOMEANSTRUCTURE;
+    Information = expected;
+  Model:
+    eml ON fis_i pblack;
+  Output:
+    TECH1 STDYX RESIDUAL;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Stata2Mplus conversion for emcause.dta
+List of variables converted shown below
+
+code : code
+em_ever : Ever had an EM
+pwhite : percent white
+pblack : percent black
+eml : Emergency dispossesion (EM or probation)
+fis_i : Fiscal Indicator Score (with imputation)
+fis_m : FIS mean across the years
+medhinc : Median Household Income
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6938
+
+Number of dependent variables                                    1
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   EML
+
+Observed independent variables
+   FIS_I       PBLACK
+
+
+Estimator                                                       ML
+Information matrix                                        EXPECTED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  emcause.dat
+
+Input data format  FREE
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        3
+
+Loglikelihood
+
+          H0 Value                        8492.898
+          H1 Value                        8492.898
+
+Information Criteria
+
+          Akaike (AIC)                  -16979.796
+          Bayesian (BIC)                -16959.262
+          Sample-Size Adjusted BIC      -16968.795
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1826.942
+          Degrees of Freedom                     2
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML      ON
+    FIS_I              0.006      0.001      9.288      0.000
+    PBLACK             0.004      0.000     37.407      0.000
+
+ Residual Variances
+    EML                0.005      0.000     58.898      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML      ON
+    FIS_I              0.106      0.011      9.324      0.000
+    PBLACK             0.429      0.011     40.647      0.000
+
+ Residual Variances
+    EML                0.768      0.009     86.558      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    EML                0.232      0.009     26.075      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.151E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.007
+ FIS_I          0.030         1.779
+ PBLACK         0.378         5.234        97.834
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+ PBLACK         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances/Correlations/Residual Corr
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+ PBLACK         0.000         0.000         0.000
+
+
+           Normalized Residuals for Covariances/Correlations/Residual Correlations
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+ PBLACK         0.000         0.000         0.000
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           LAMBDA
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML                0             0             0
+ FIS_I              0             0             0
+ PBLACK             0             0             0
+
+
+           THETA
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML                0
+ FIS_I              0             0
+ PBLACK             0             0             0
+
+
+           BETA
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML                0             1             2
+ FIS_I              0             0             0
+ PBLACK             0             0             0
+
+
+           PSI
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML                3
+ FIS_I              0             0
+ PBLACK             0             0             0
+
+
+     STARTING VALUES
+
+
+           LAMBDA
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            1.000         0.000         0.000
+ FIS_I          0.000         1.000         0.000
+ PBLACK         0.000         0.000         1.000
+
+
+           THETA
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+ PBLACK         0.000         0.000         0.000
+
+
+           BETA
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.000         0.000         0.000
+ FIS_I          0.000         0.000         0.000
+ PBLACK         0.000         0.000         0.000
+
+
+           PSI
+              EML           FIS_I         PBLACK
+              ________      ________      ________
+ EML            0.003
+ FIS_I          0.000         1.779
+ PBLACK         0.000         5.234        97.834
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\data\detroit\emcause2.dgm
+
+     Beginning Time:  18:52:12
+        Ending Time:  18:52:12
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

@@ -1,0 +1,583 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+10/17/2016   1:20 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    Model 1.
+    Stata2Mplus conversion for emcause.dta
+    List of variables converted shown below
+
+    code : code
+    em_ever : Ever had an EM
+    pwhite : percent white
+    pblack : percent black
+    eml : Emergency dispossesion (EM or probation)
+    fis_i : Fiscal Indicator Score (with imputation)
+    fis_m : FIS mean across the years
+    medhinc : Median Household Income
+
+  Data:
+    File is emcause.dat ;
+  Variable:
+    Names are
+       code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+    Usevariables are eml fis_i pblack linc;
+    Categorical = eml;
+  Model:
+    eml ON fis_i pblack;
+    fis_i ON pblack linc;
+  Analysis:
+    Estimator=BAYES;
+    !More iterations necessary to achieve a scale reduction value close to 1
+    !Default is 1000?
+    !At 12400 iterations the scale reduction factor is nearly 1, does it make sense to use t
+    Fbiter = 12400;
+    !Using thin allows the autocorrelation of estimates to get below 0.1
+    Thin = 20;
+    !Pay attention to the Posterior Predictive P-value, it is less forgiving as a fit indica
+    !Over 0.5 is ideal, this suggests that the PP chi-square converges with the ML chi-squar
+  Model Indirect:
+    eml IND pblack;
+  Output:
+    TECH1 TECH8 STDYX;
+  Plot:
+    Type = plot2;
+
+
+
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+    !At 12400 iterations the scale reduction factor is nearly 1, does it make sense to use th
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+    !Pay attention to the Posterior Predictive P-value, it is less forgiving as a fit indicat
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+    !Over 0.5 is ideal, this suggests that the PP chi-square converges with the ML chi-square
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Model 1.
+Stata2Mplus conversion for emcause.dta
+List of variables converted shown below
+
+code : code
+em_ever : Ever had an EM
+pwhite : percent white
+pblack : percent black
+eml : Emergency dispossesion (EM or probation)
+fis_i : Fiscal Indicator Score (with imputation)
+fis_m : FIS mean across the years
+medhinc : Median Household Income
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6938
+
+Number of dependent variables                                    2
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   FIS_I
+
+  Binary and ordered categorical (ordinal)
+   EML
+
+Observed independent variables
+   PBLACK      LINC
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               2
+  Random seed for the first chain                                0
+  Starting value information                           UNPERTURBED
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Fixed number of iterations                                 12400
+  K-th iteration used for thinning                              20
+
+Input data file(s)
+  emcause.dat
+Input data format  FREE
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    EML
+      Category 1    0.993         6892.000
+      Category 2    0.007           46.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                               7
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                -12.209            13.291
+
+          Posterior Predictive P-Value              0.502
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ EML        ON
+    FIS_I              0.264       0.047      0.000       0.174       0.358      *
+    PBLACK             0.027       0.003      0.000       0.020       0.033      *
+
+ FIS_I      ON
+    PBLACK             0.049       0.002      0.000       0.046       0.052      *
+    LINC              -0.619       0.053      0.000      -0.722      -0.514      *
+
+ Intercepts
+    FIS_I              0.000       0.015      0.500      -0.029       0.028
+
+ Thresholds
+    EML$1              3.311       0.155      0.000       3.039       3.653      *
+
+ Residual Variances
+    FIS_I              1.472       0.025      0.000       1.423       1.521      *
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ EML        ON
+    FIS_I              0.313       0.050      0.000       0.211       0.408      *
+    PBLACK             0.234       0.029      0.000       0.178       0.292      *
+
+ FIS_I      ON
+    PBLACK             0.362       0.010      0.000       0.341       0.381      *
+    LINC              -0.133       0.011      0.000      -0.155      -0.111      *
+
+ Intercepts
+    FIS_I              0.000       0.011      0.500      -0.021       0.021
+
+ Thresholds
+    EML$1              2.940       0.100      0.000       2.760       3.148      *
+
+ Residual Variances
+    FIS_I              0.826       0.008      0.000       0.811       0.842      *
+
+
+R-SQUARE
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    EML                0.211       0.030      0.000       0.158       0.277
+    FIS_I              0.174       0.008      0.000       0.158       0.189
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+Effects from PBLACK to EML
+
+    Total              0.040       0.003      0.000       0.034       0.045      *
+    Total indirect     0.013       0.002      0.000       0.008       0.018      *
+
+  Specific indirect
+
+    EML
+    FIS_I
+    PBLACK             0.013       0.002      0.000       0.008       0.018      *
+
+  Direct
+    EML
+    PBLACK             0.027       0.003      0.000       0.020       0.033      *
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+Effects from PBLACK to EML
+
+    Total              0.347       0.021      0.000       0.306       0.389      *
+    Total indirect     0.113       0.018      0.000       0.076       0.148      *
+
+  Specific indirect
+
+    EML
+    FIS_I
+    PBLACK             0.113       0.018      0.000       0.076       0.148      *
+
+  Direct
+    EML
+    PBLACK             0.234       0.029      0.000       0.178       0.292      *
+
+
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              EML$1
+              ________
+ 1                  7
+
+
+           NU
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ 1                  0             0             0             0
+
+
+           LAMBDA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML                0             0             0             0
+ FIS_I              0             0             0             0
+ PBLACK             0             0             0             0
+ LINC               0             0             0             0
+
+
+           THETA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML                0
+ FIS_I              0             0
+ PBLACK             0             0             0
+ LINC               0             0             0             0
+
+
+           ALPHA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ 1                  0             1             0             0
+
+
+           BETA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML                0             2             3             0
+ FIS_I              0             0             4             5
+ PBLACK             0             0             0             0
+ LINC               0             0             0             0
+
+
+           PSI
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML                0
+ FIS_I              0             6
+ PBLACK             0             0             0
+ LINC               0             0             0             0
+
+
+     STARTING VALUES
+
+
+           TAU
+              EML$1
+              ________
+ 1              2.783
+
+
+           NU
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML            1.000         0.000         0.000         0.000
+ FIS_I          0.000         1.000         0.000         0.000
+ PBLACK         0.000         0.000         1.000         0.000
+ LINC           0.000         0.000         0.000         1.000
+
+
+           THETA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+ PBLACK         0.000         0.000         0.000
+ LINC           0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           BETA
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML            0.000         0.000         0.000         0.000
+ FIS_I          0.000         0.000         0.000         0.000
+ PBLACK         0.000         0.000         0.000         0.000
+ LINC           0.000         0.000         0.000         0.000
+
+
+           PSI
+              EML           FIS_I         PBLACK        LINC
+              ________      ________      ________      ________
+ EML            1.000
+ FIS_I          0.000         0.890
+ PBLACK         0.000         0.000        48.913
+ LINC           0.000         0.000         0.000         0.041
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,5.000)              0.0000              5.0000              2.2361
+     Parameter 3~N(0.000,5.000)              0.0000              5.0000              2.2361
+     Parameter 4~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 5~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 6~IG(-1.000,0.000)          infinity            infinity            infinity
+     Parameter 7~N(0.000,5.000)              0.0000              5.0000              2.2361
+
+
+TECHNICAL 8 OUTPUT
+
+
+
+     Kolmogorov-Smirnov comparing posterior distributions across chains 1 and 2 using 100 draws.
+
+
+
+
+
+     Parameter   KS Statistic P-value
+     Parameter 2    0.1300    0.3439
+     Parameter 7    0.1000    0.6766
+     Parameter 5    0.0800    0.8938
+     Parameter 6    0.0100    1.0000
+     Parameter 4    0.0000    1.0000
+     Parameter 1    0.0000    1.0000
+     Parameter 3    0.0000    1.0000
+
+
+
+     Simulated prior distributions
+
+     Parameter       Prior Mean  Prior Variance  Prior Std. Dev.
+
+
+     Parameter 1 Improper Prior
+     Parameter 2         0.0232          4.7977          2.1904
+     Parameter 3         0.0189          4.4811          2.1169
+     Parameter 4 Improper Prior
+     Parameter 5 Improper Prior
+     Parameter 6 Improper Prior
+     Parameter 7         0.0220          5.0186          2.2402
+
+
+   TECHNICAL 8 OUTPUT FOR BAYES ESTIMATION
+
+     CHAIN    BSEED
+     1        0
+     2        285380
+
+                     POTENTIAL       PARAMETER WITH
+     ITERATION    SCALE REDUCTION      HIGHEST PSR
+     100              1.473               7
+     200              1.096               7
+     300              1.015               2
+     400              1.023               7
+     500              1.025               2
+     600              1.006               6
+     700              1.005               7
+     800              1.012               7
+     900              1.076               7
+     1000             1.102               7
+     1100             1.051               7
+     1200             1.029               7
+     1300             1.032               7
+     1400             1.033               7
+     1500             1.011               7
+     1600             1.011               7
+     1700             1.007               7
+     1800             1.003               7
+     1900             1.000               5
+     2000             1.000               1
+     2100             1.002               7
+     2200             1.005               7
+     2300             1.009               7
+     2400             1.002               7
+     2500             1.003               2
+     2600             1.003               2
+     2700             1.007               7
+     2800             1.008               7
+     2900             1.002               2
+     3000             1.002               2
+     3100             1.002               7
+     3200             1.002               2
+     3300             1.001               7
+     3400             1.001               7
+     3500             1.001               2
+     3600             1.000               1
+     3700             1.000               2
+     3800             1.001               2
+     3900             1.001               2
+     4000             1.000               2
+     4100             1.001               2
+     4200             1.000               1
+     4300             1.000               7
+     4400             1.002               7
+     4500             1.001               7
+     4600             1.004               7
+     4700             1.003               7
+     4800             1.002               7
+     4900             1.002               7
+     5000             1.004               7
+     5100             1.005               7
+     5200             1.005               7
+     5300             1.006               7
+     5400             1.009               7
+     5500             1.008               7
+     5600             1.008               7
+     5700             1.003               7
+     5800             1.002               7
+     5900             1.003               7
+     6000             1.003               7
+     6100             1.002               7
+     6200             1.003               7
+     6300             1.003               7
+     6400             1.002               7
+     6500             1.003               7
+     6600             1.003               7
+     6700             1.003               7
+     6800             1.002               7
+     6900             1.002               7
+     7000             1.002               7
+     7100             1.001               7
+     7200             1.000               7
+     7300             1.000               7
+     7400             1.000               7
+     7500             1.000               5
+     7600             1.000               5
+     7700             1.000               7
+     7800             1.000               1
+     7900             1.000               5
+     8000             1.001               7
+     8100             1.001               7
+     8200             1.001               2
+     8300             1.000               2
+     8400             1.000               5
+     8500             1.000               5
+     8600             1.001               2
+     8700             1.001               7
+     8800             1.002               7
+     8900             1.001               7
+     9000             1.001               2
+     9100             1.001               2
+     9200             1.001               2
+     9300             1.001               2
+     9400             1.001               2
+     9500             1.002               2
+     9600             1.002               2
+     9700             1.002               2
+     9800             1.003               2
+     9900             1.003               2
+     10000            1.004               7
+     10100            1.005               7
+     10200            1.005               7
+     10300            1.005               7
+     10400            1.005               7
+     10500            1.005               7
+     10600            1.006               7
+     10700            1.005               7
+     10800            1.005               7
+     10900            1.006               7
+     11000            1.006               7
+     11100            1.005               7
+     11200            1.005               7
+     11300            1.005               7
+     11400            1.004               7
+     11500            1.004               7
+     11600            1.004               7
+     11700            1.004               7
+     11800            1.004               7
+     11900            1.004               7
+     12000            1.005               7
+     12100            1.006               7
+     12200            1.007               7
+     12300            1.008               7
+     12400            1.007               7
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Sample proportions and estimated probabilities
+  Bayesian posterior parameter distributions
+  Bayesian posterior parameter trace plots
+  Bayesian autocorrelation plots
+  Bayesian prior parameter distributions
+  Bayesian posterior predictive checking scatterplots
+  Bayesian posterior predictive checking distribution plots
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\data\detroit\table models\m2bayes.dgm
+
+     Beginning Time:  13:20:52
+        Ending Time:  13:29:59
+       Elapsed Time:  00:09:07
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

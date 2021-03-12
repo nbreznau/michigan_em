@@ -1,0 +1,25 @@
+Title: 
+  Stata2Mplus conversion for emcause.dta
+  List of variables converted shown below
+
+  code : code
+  em_ever : Ever had an EM
+  pwhite : percent white
+  pblack : percent black
+  eml : Emergency dispossesion (EM or probation)
+  fis_i : Fiscal Indicator Score (with imputation)
+  fis_m : FIS mean across the years
+  medhinc : Median Household Income
+ 
+Data:
+  File is emcause.dat ;
+Variable:
+  Names are 
+     code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+  Usevariables are eml fis_i pblack linc;
+  Categorical = eml;
+  !Keeping it an LPM for easier understanding
+Model:
+  eml ON fis_i pblack linc;
+Output:
+  TECH1 STDYX;

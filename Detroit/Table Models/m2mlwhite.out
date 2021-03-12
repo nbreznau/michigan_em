@@ -1,0 +1,453 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+10/21/2016   5:54 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    Model 2.
+    Stata2Mplus conversion for emcause.dta
+    List of variables converted shown below
+
+    code : code
+    em_ever : Ever had an EM
+    pwhite : percent white
+    pblack : percent black
+    eml : Emergency dispossesion (EM or probation)
+    fis_i : Fiscal Indicator Score (with imputation)
+    fis_m : FIS mean across the years
+    medhinc : Median Household Income
+
+  Data:
+    File is emcause.dat ;
+  Variable:
+    Names are
+       code em_ever pwhite pblack eml fis_i fis_m medhinc linc;
+    Usevariables are eml fis_i pwhite linc;
+    Categorical = eml;
+  Model:
+    eml ON fis_i pwhite;
+    fis_i ON pwhite linc;
+  Model Indirect:
+    eml IND pwhite;
+  Analysis:
+    Estimator=ML;
+
+  Output:
+    TECH1 TECH8 STDYX RESIDUAL;
+
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Model 2.
+Stata2Mplus conversion for emcause.dta
+List of variables converted shown below
+
+code : code
+em_ever : Ever had an EM
+pwhite : percent white
+pblack : percent black
+eml : Emergency dispossesion (EM or probation)
+fis_i : Fiscal Indicator Score (with imputation)
+fis_m : FIS mean across the years
+medhinc : Median Household Income
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6938
+
+Number of dependent variables                                    2
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   FIS_I
+
+  Binary and ordered categorical (ordinal)
+   EML
+
+Observed independent variables
+   PWHITE      LINC
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            0
+  Adaptive quadrature                                           ON
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  emcause.dat
+Input data format  FREE
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    EML
+      Category 1    0.993         6892.000
+      Category 2    0.007           46.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        7
+
+Loglikelihood
+
+          H0 Value                      -11376.703
+
+Information Criteria
+
+          Akaike (AIC)                   22767.406
+          Bayesian (BIC)                 22815.319
+          Sample-Size Adjusted BIC       22793.075
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML        ON
+    FIS_I              0.534      0.108      4.949      0.000
+    PWHITE            -0.059      0.008     -7.488      0.000
+
+ FIS_I      ON
+    PWHITE            -0.039      0.001    -29.075      0.000
+    LINC              -0.636      0.053    -11.914      0.000
+
+ Intercepts
+    FIS_I              0.000      0.015     -0.009      0.993
+
+ Thresholds
+    EML$1              7.009      0.372     18.839      0.000
+
+ Residual Variances
+    FIS_I              1.504      0.026     58.898      0.000
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+ EML        ON
+    FIS_I              1.706
+    PWHITE             0.943
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EML        ON
+    FIS_I              0.332      0.061      5.427      0.000
+    PWHITE            -0.312      0.043     -7.311      0.000
+
+ FIS_I      ON
+    PWHITE            -0.334      0.011    -30.663      0.000
+    LINC              -0.137      0.011    -12.006      0.000
+
+ Intercepts
+    FIS_I              0.000      0.011     -0.009      0.993
+
+ Thresholds
+    EML$1              3.269      0.123     26.492      0.000
+
+ Residual Variances
+    FIS_I              0.845      0.008    105.867      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    EML                0.284      0.033      8.538      0.000
+    FIS_I              0.155      0.008     19.384      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.516E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from PWHITE to EML
+
+  Total               -0.080      0.006    -12.983      0.000
+  Total indirect      -0.021      0.004     -4.879      0.000
+
+  Specific indirect
+
+    EML
+    FIS_I
+    PWHITE            -0.021      0.004     -4.879      0.000
+
+  Direct
+    EML
+    PWHITE            -0.059      0.008     -7.488      0.000
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from PWHITE to EML
+
+  Total               -0.423      0.029    -14.517      0.000
+  Total indirect      -0.111      0.021     -5.343      0.000
+
+  Specific indirect
+
+    EML
+    FIS_I
+    PWHITE            -0.111      0.021     -5.343      0.000
+
+  Direct
+    EML
+    PWHITE            -0.312      0.043     -7.311      0.000
+
+
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              FIS_I
+              ________
+ 1              0.000
+
+
+           Residuals for Means
+              FIS_I
+              ________
+ 1              0.000
+
+
+           Model Estimated Covariances
+              FIS_I
+              ________
+ FIS_I          1.779
+
+
+           Residuals for Covariances
+              FIS_I
+              ________
+ FIS_I          0.000
+
+
+     RESIDUALS ARE NOT AVAILABLE FOR THE CATEGORICAL VARIABLES.
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              EML$1
+              ________
+ 1                  7
+
+
+           NU
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ 1                  0             0             0             0
+
+
+           LAMBDA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML                0             0             0             0
+ FIS_I              0             0             0             0
+ PWHITE             0             0             0             0
+ LINC               0             0             0             0
+
+
+           THETA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML                0
+ FIS_I              0             0
+ PWHITE             0             0             0
+ LINC               0             0             0             0
+
+
+           ALPHA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ 1                  0             1             0             0
+
+
+           BETA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML                0             2             3             0
+ FIS_I              0             0             4             5
+ PWHITE             0             0             0             0
+ LINC               0             0             0             0
+
+
+           PSI
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML                0
+ FIS_I              0             6
+ PWHITE             0             0             0
+ LINC               0             0             0             0
+
+
+     STARTING VALUES
+
+
+           TAU
+              EML$1
+              ________
+ 1              5.009
+
+
+           NU
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML            1.000         0.000         0.000         0.000
+ FIS_I          0.000         1.000         0.000         0.000
+ PWHITE         0.000         0.000         1.000         0.000
+ LINC           0.000         0.000         0.000         1.000
+
+
+           THETA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML            0.000
+ FIS_I          0.000         0.000
+ PWHITE         0.000         0.000         0.000
+ LINC           0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           BETA
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML            0.000         0.000         0.000         0.000
+ FIS_I          0.000         0.000         0.000         0.000
+ PWHITE         0.000         0.000         0.000         0.000
+ LINC           0.000         0.000         0.000         0.000
+
+
+           PSI
+              EML           FIS_I         PWHITE        LINC
+              ________      ________      ________      ________
+ EML            1.000
+ FIS_I          0.000         0.890
+ PWHITE         0.000         0.000        64.555
+ LINC           0.000         0.000         0.000         0.041
+
+
+TECHNICAL 8 OUTPUT
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.13184859D+05    0.0000000    0.0000000  EM
+              2 -0.11376703D+05 1808.1563466    0.1371388  EM
+              3 -0.11376703D+05    0.0000152    0.0000000  EM
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\data\detroit\table models\m2mlwhite.dgm
+
+     Beginning Time:  17:54:21
+        Ending Time:  17:54:21
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

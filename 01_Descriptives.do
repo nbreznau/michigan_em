@@ -6,12 +6,15 @@
 *********************************************
 *Preparation
 
+*packages needed
+*ssc install estout
+
 *Set your working directory
 
-global wdir "C:/GitHub/em_michigan/" 
+global wdir "C:/GitHub/michigan_em" 
 
 * Load data (see /data folder for prep files)
-use "${DIR}/data/em_rep.dta", clear
+use "${wdir}/data/em_rep.dta", clear
 
 
 **********************************************
@@ -22,11 +25,6 @@ gen wpop = (pwhite/100)*pop
 gen bpop = (pblack/100)*pop
 gen opop = ((100-pwhite-pblack)/100)*pop
 
-gen eme = 0
-
-*Ever under EM in that unit
-replace eme = 1 if em_ever>0
-
 gen epopw = (eme*wpop)
 gen epopt = (eme*pop)
 gen epopb = (eme*bpop)
@@ -34,7 +32,7 @@ gen epopo = (eme*opop)
 
 
 *Output to Excel
-putexcel set "${DIR}/results/tbl1.xlsx", replace
+putexcel set "${wdir}/results/tbl1.xlsx", replace
 putexcel B1 = "All"
 putexcel C1 = "White"
 putexcel E1 = "Black"
@@ -102,26 +100,31 @@ putexcel H3 = ((`eother')/(`etotal')), nformat(percent)
 putexcel close
 
 
+*******************************************************
+* Table 2. Descriptives
+
+*take log income
+gen medhinc_ln = ln(medhinc)
+
+estpost summarize eml fis_i pblack medhinc_ln pwhite if pop>1500
+
+esttab . using "${wdir}/results/tbl2.csv", cells("count mean sd min max") replace 
 
 
-*******************************************************8
 
-*** Not yet processed 12-Mar-21
+*******************************************************
 
-drop if medhinc==.
+label var pblack "Percent Black Population"
+* Figure 3
+set seed 90125
+twoway (scatter fis pblack  if eml == 0, jitter(8) msize(.3) mcolor(gray*2)) ///
+(scatter fis pblack if eml == 1, msize(1.2) msymbol(D) jitter(2) mcolor(maroon)) ///
+, graphregion(color(white)) bgcolor(white) legend(order(2 "Emergency Management" 1 "Self-Governance")) 
+
+graph export "${wdir}/results/fig3.png", width(800) height(600) replace
 
 
 
-
-*for some reason em_ever does not include Inkster
-sort code
-tabdisp code, cellvar(muni)
-bysort code:egen emev=mean(eml)
-tab muni if emev>0
-replace emev=1 if emev>0
-table code if eml==1, c(m pblack m fis_i)
-
-table code if eml==0 & emev==1, c(m pblack m fis_i)
 
  
 logit eml fis_i if pop>1500, cluster(code)

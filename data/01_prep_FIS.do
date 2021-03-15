@@ -25,6 +25,10 @@ global DIR "C:/GitHub/michigan_em"
 *Michigan Dept. of Treasury
 *http://www.michigan.gov/treasury/0,4679,7-121-1751_51556-198770--,00.html
 
+* Note that these data have manually added demographic variables, but we
+* ignore these and instead use the ACS in 02_prep_ACS.do for the 
+* sake of reproducibility
+
 import excel "${DIR}/data/FIS RACE EM MAIN.xlsx", sheet("data") firstrow case(lower) clear
 destring, replace
 reshape long pwhite pblack fis fisg em pop, i(code) j(year)

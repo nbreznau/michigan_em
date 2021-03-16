@@ -113,9 +113,10 @@ esttab . using "${wdir}/results/tbl2.csv", cells("count mean sd min max") replac
 
 
 *******************************************************
+* Figure 3
+
 
 label var pblack "Percent Black Population"
-* Figure 3
 set seed 90125
 twoway (scatter fis pblack  if eml == 0, jitter(8) msize(.3) mcolor(gray*2)) ///
 (scatter fis pblack if eml == 1, msize(1.2) msymbol(D) jitter(2) mcolor(maroon)) ///
@@ -125,63 +126,23 @@ graph export "${wdir}/results/fig3.png", width(800) height(600) replace
 
 
 
-
- 
-logit eml fis_i if pop>1500, cluster(code)
-est store f1
-
-logit eml fis_i pblack if pop>1500, cluster(code)
-est store b1
-logit, or
-logit eml fis_i pblack if pop>1500
-margins, at(pblack=(0(5)100))
-margins, at(pblack=(0(5)100)) level(90)
-logit eml fis_i pwhite if pop>1500, cluster(code)
-est store w1
-logit, or
-*confidence intervals are left unbiased due to the small sample size, kind of a mini penalized likelihood correction as the ED event is so rare
-logit eml fis_i pwhite if pop>1500
-margins, at(pwhite=(0(5)100))
-margins, at(pwhite=(0(5)100)) level(90)
-
-
-logit eml fis_i medhinc if pop>1500, cluster(code)
-est store hinc1
-logit eml fis_i medhinc pblack if pop>1500, cluster(code)
-est store b2
-logit eml fis_i medhinc pwhite if pop>1500, cluster(code)
-est store w2
-
-*Table 3
-
-estimates table f1 b1 hinc1 b2, stats(N r2_p aic) star(.05 .01 .001) b(%9.2f)
-
- estimates table f1 b1 hinc1 b2, stats(N r2_p aic) star(.05 .01 .001) b(%9.2f) eform
-
- 
- 
+*******************************************************
 *MPlus
-
-use "C:\data\Detroit\analysis.dta", clear
 drop if pop<1500
 drop if medhinc==.
 gen lnminc = ln(medhinc)
-recode pblack (100/101=100)
-recode pwhite (-4/0=0)(100/101=100)
+
+* Center use variables
 sum eml fis_i pblack lnminc pwhite
 replace fis_i = fis_i-1.418151
 replace pblack = pblack-3.604963
 replace lnminc=lnminc-3.885343
-recode pwhite (-4/0=0)(100/101=100)
 replace pwhite = pwhite-91.78639
 keep code em_ever pwhite pblack eml fis_i fis_m medhinc lnminc
-stata2mplus using C:\data\Detroit\emcause, replace
+stata2mplus using "${wdir}/SEM/emcause, replace
 
-*or runmplus in stata (make sure things are installed and directory has write permission (not run on a server, e.g.)
-cd C:\data\Detroit\
-runmplus eml fis_i pblack lnminc, categorical(eml) model(fis_i on pblack lnminc; eml on fis_i pblack) estimator(ML)
-*ICC / RHO
 
+* rate of change of race is negligible within units
 xtmixed pblack || code:
 xtmrho
 xtmixed fis_i || code:
@@ -190,50 +151,4 @@ xtmixed pwhite || code:
 xtmrho
 
 *rho’s pblack = 99.5%, fis = 57.3%, pwhite= 99.5%
-MPlus code
-
-*Variance of y*
-*M1
-logit eml fis_i
-fitstat
-*result 5.37
-*M2
-logit eml fis_i pblack
-fitstat
-*result 4.52
-*This gives the variance of y* which is equal to the variance of y* + pi^2/3(the logistic distribution variance)
-*Sensitivity
-*Firthlogit
-*Results come out the same
-logit eml fis_i pblack medhinc
-firthlogit eml fis_i pblack medhinc
-
-Nate—
-     The model is identified once you fix the residual variance (“theta”). Let the factor variance be “free” and ignore it—its value will be equal to:
-Variance(X2) – residual variance(X2)
-It will change as you choose different values for the residual variance of X2. You could set the factor variance to this value, but then you would have to keep track of it as you change the residual variance of X2.
-The number you need to worry about is the variance of X2. Set the residual variance of X2 as a percent of X2’s total variance. Then  you can scale up this residual variance until either (a) you get what you want, or (b) the model starts producing nonsense estimates, or just fails.
---Ed Rigdon
-
-.	sum eml fis_i	pblack
-
-	Variable	Obs	Mean	Std. Dev.	Min	Max
-						
-	eml	6,938	.0066302	.0811612	0	1
-	fis_i	6,938	1.418151	1.334057	0	9
-	pblack	6,938	3.604963	9.8918		0	100.18
-
-*variance of fis = 
-display (1.334057)^2
-display 1.7797081*.9
-display 1.7797081*.8
-display 1.7797081*.7
-display 1.7797081*.6
-display 1.7797081*.5
-display 1.7797081*.4
-display 1.7797081*.3
-display 1.7797081*.2
-display 1.7797081*.1
-
- 
 

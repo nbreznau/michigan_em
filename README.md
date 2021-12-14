@@ -4,11 +4,13 @@
 ##### University of Bremen
 ##### breznau.nate@gmail.com
 </br>
+
 ##### [L. Owen Kirkpatrick](https://www.smu.edu/Dedman/Academics/Departments/Sociology/People/Faculty/LucasOwenKirkpatrick)
 ##### Southern Methodist University
 ##### kirkpatrick@smu.edu
 
 </br>
+
 ## Replication Materials
 
 ### Article

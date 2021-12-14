@@ -44,4 +44,4 @@ The  usage  of  emergency  management  by  United  States’  state-level  gover
 
 #### Descriptive and Analytical Results
 
-![Fig 2a](/michigan_em/results/Fig2a.png "Figure 2a")
+![Fig 2a](..master/results/Fig2a.png "Figure 2a")

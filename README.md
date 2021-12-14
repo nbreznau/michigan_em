@@ -3,12 +3,12 @@
 ##### [Nate Breznau](https://sites.google.com/site/nbreznau/)
 ##### University of Bremen
 ##### breznau.nate@gmail.com
-<br>
+</br>
 ##### [L. Owen Kirkpatrick](https://www.smu.edu/Dedman/Academics/Departments/Sociology/People/Faculty/LucasOwenKirkpatrick)
 ##### Southern Methodist University
 ##### kirkpatrick@smu.edu
 
-<br>
+</br>
 ## Replication Materials
 
 ### Article

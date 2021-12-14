@@ -44,4 +44,12 @@ The  usage  of  emergency  management  by  United  States’  state-level  gover
 
 #### Descriptive and Analytical Results
 
+We demonstrate statistically that the percent black population of a given local unit (city, town, school district) remain a significant predictor of emergency management after adjusting for relative need of managmeent measured by the degree of fiscal distress of that unit.
+
 ![Fig 2a](results/Fig2a.png "Figure 2a")
+![Fig 2b](results/Fig2a.png "Figure 2b")
+
+A visualization of our data and highlighted cases of emergency management
+
+![Fig 3](results/fig3.png "Figure 3")
+
